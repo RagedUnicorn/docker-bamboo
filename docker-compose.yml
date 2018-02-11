@@ -1,0 +1,17 @@
+version: '3.4'
+services:
+  bamboo:
+    build: .
+    image: ragedunicorn/bamboo:1.0.0-stable
+    volumes:
+      - bamboo_data:/var/atlassian/bamboo
+      - bamboo_logs:/opt/atlassian/bamboo/logs
+    ports:
+      - "8085:8085"
+      - "54663:54663"
+    labels:
+      com.ragedunicorn.bamboo.environment: "prod"
+      com.ragedunicorn.bamboo.description: "Bamboo container"
+volumes:
+  bamboo_data: {}
+  bamboo_logs: {}
