@@ -11,7 +11,7 @@ LABEL com.ragedunicorn.maintainer="Michael Wiesendanger <michael.wiesendanger@gm
 ENV \
   BAMBOO_VERSION=6.3.0 \
   SU_EXEC_VERSION=0.2-r0 \
-  CURL_VERSION=7.58.0-r0 \
+  CURL_VERSION=7.59.0-r0 \
   GIT_VERSION=2.15.0-r1 \
   OPENSSH_VERSION=7.5_p1-r8 \
   BASH_VERSION=4.4.19-r1
