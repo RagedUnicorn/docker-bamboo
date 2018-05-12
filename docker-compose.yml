@@ -8,7 +8,8 @@ services:
       - bamboo_logs:/opt/atlassian/bamboo/logs
     ports:
       - "8085:8085"
-      - "54663:54663"
+    expose:
+      - "54663"
     healthcheck:
       test: ["CMD", "nc", "-z", "localhost", "8085"]
       interval: 1m
