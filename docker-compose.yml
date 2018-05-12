@@ -9,6 +9,11 @@ services:
     ports:
       - "8085:8085"
       - "54663:54663"
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "8085"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
     labels:
       com.ragedunicorn.bamboo.environment: "prod"
       com.ragedunicorn.bamboo.description: "Bamboo container"
