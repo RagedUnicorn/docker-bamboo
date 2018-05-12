@@ -9,7 +9,7 @@ LABEL com.ragedunicorn.maintainer="Michael Wiesendanger <michael.wiesendanger@gm
 # /_____/\__,_/_/ /_/ /_/_.___/\____/\____/
 
 ENV \
-  BAMBOO_VERSION=6.3.0 \
+  BAMBOO_VERSION=6.5.0 \
   SU_EXEC_VERSION=0.2-r0 \
   CURL_VERSION=7.59.0-r0 \
   GIT_VERSION=2.15.0-r1 \
@@ -40,8 +40,6 @@ RUN \
   mkdir -p "${BAMBOO_INSTALL}"; \
   curl -Ls "https://www.atlassian.com/software/bamboo/downloads/binary/atlassian-bamboo-${BAMBOO_VERSION}.tar.gz" \
     | tar -zx --directory  "${BAMBOO_INSTALL}" --strip-components=1 --no-same-owner; \
-  curl --location "https://jdbc.postgresql.org/download/postgresql-9.4.1212.jar" \
-    -o "${BAMBOO_INSTALL}/lib/postgresql-9.4.1212.jar"; \
   chmod -R 700 "${BAMBOO_INSTALL}"; \
   chown -R "${BAMBOO_USER}":"${BAMBOO_GROUP}" "${BAMBOO_INSTALL}"; \
   sed --in-place 's/^# umask 0027$/umask 0027/g' "${BAMBOO_INSTALL}/bin/setenv.sh";
