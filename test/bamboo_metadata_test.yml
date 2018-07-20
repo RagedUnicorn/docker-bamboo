@@ -1,0 +1,18 @@
+schemaVersion: 2.0.0
+
+metadataTest:
+  env:
+    - key: 'BAMBOO_USER'
+      value: 'bamboo'
+    - key: 'BAMBOO_GROUP'
+      value: 'bamboo'
+    - key: 'BAMBOO_HOME'
+      value: '/var/atlassian/bamboo'
+    - key: 'BAMBOO_INSTALL'
+      value: '/opt/atlassian/bamboo'
+  labels:
+    - key: 'com.ragedunicorn.maintainer'
+      value: 'Michael Wiesendanger <michael.wiesendanger@gmail.com>'
+  exposedPorts: ["8085", "54663"]
+  volumes: ["/var/atlassian/bamboo", "/opt/atlassian/bamboo/logs"]
+  entrypoint: ["/docker-entrypoint.sh"]

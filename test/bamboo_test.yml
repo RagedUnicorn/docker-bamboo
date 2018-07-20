@@ -1,0 +1,15 @@
+schemaVersion: 2.0.0
+
+fileExistenceTests:
+- name: 'bamboo_start'
+  path: '/opt/atlassian/bamboo/bin/start-bamboo.sh'
+  shouldExist: true
+  permissions: '-rwx------'
+- name: 'bamboo_setenv'
+  path: '/opt/atlassian/bamboo/bin/setenv.sh'
+  shouldExist: true
+  permissions: '-rwx------'
+- name: 'docker_entrypoint'
+  path: '/docker-entrypoint.sh'
+  shouldExist: true
+  permissions: '-rwxr-xr-x'
