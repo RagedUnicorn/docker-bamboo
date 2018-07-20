@@ -8,6 +8,10 @@ LABEL com.ragedunicorn.maintainer="Michael Wiesendanger <michael.wiesendanger@gm
 #  / /_/ / /_/ / / / / / / /_/ / /_/ / /_/ /
 # /_____/\__,_/_/ /_/ /_/_.___/\____/\____/
 
+# image args
+ARG BAMBOO_USER=bamboo
+ARG BAMBOO_GROUP=bamboo
+
 ENV \
   BAMBOO_VERSION=6.5.0 \
   SU_EXEC_VERSION=0.2-r0 \
@@ -17,8 +21,8 @@ ENV \
   BASH_VERSION=4.4.19-r1
 
 ENV \
-  BAMBOO_USER=bamboo \
-  BAMBOO_GROUP=bamboo \
+  BAMBOO_USER="${BAMBOO_USER}" \
+  BAMBOO_GROUP="${BAMBOO_GROUP}" \
   BAMBOO_HOME=/var/atlassian/bamboo \
   BAMBOO_INSTALL=/opt/atlassian/bamboo
 
