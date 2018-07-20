@@ -68,7 +68,7 @@ The container is storing data in multiple docker volumes `/var/atlassian/bamboo`
 
 ## Healthcheck
 
-The production image supports a simple healthcheck whether the container is healthy or not. This can be configured inside `docker-compose.yml`.
+The production and the stack image supports a simple healthcheck showing whether the container is healthy or not. This can be configured inside `docker-compose.yml` or `docker-compose.stack.yml`
 
 ## Development
 

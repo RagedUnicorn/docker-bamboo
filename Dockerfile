@@ -48,11 +48,15 @@ RUN \
   chown -R "${BAMBOO_USER}":"${BAMBOO_GROUP}" "${BAMBOO_INSTALL}"; \
   sed --in-place 's/^# umask 0027$/umask 0027/g' "${BAMBOO_INSTALL}/bin/setenv.sh";
 
+# add healthcheck script
+COPY docker-healthcheck.sh /
+
 # add launch script
 COPY docker-entrypoint.sh /
 
 RUN \
-  chmod 755 docker-entrypoint.sh
+  chmod 755 / docker-entrypoint.sh && \
+  chmod 755 /docker-healthcheck.sh
 
 # expose web and agent ports
 EXPOSE 8085
