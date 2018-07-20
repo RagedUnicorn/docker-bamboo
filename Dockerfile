@@ -24,7 +24,10 @@ ENV \
   BAMBOO_USER="${BAMBOO_USER}" \
   BAMBOO_GROUP="${BAMBOO_GROUP}" \
   BAMBOO_HOME=/var/atlassian/bamboo \
-  BAMBOO_INSTALL=/opt/atlassian/bamboo
+  BAMBOO_INSTALL=/opt/atlassian/bamboo \
+  BAMBOO_DATA_DIR=/var/atlassian/bamboo \
+  BAMBOO_LOGS_DIR=/opt/atlassian/bamboo/logs
+
 
 # explicitly set user/group IDs
 RUN addgroup -S "${BAMBOO_GROUP}" -g 9999 && adduser -S -G "${BAMBOO_GROUP}" -u 9999 "${BAMBOO_USER}"
@@ -63,8 +66,7 @@ EXPOSE 8085
 EXPOSE 54663
 
 # Set volume mount points for installation and home directory. Changes to the
-# home directory needs to be persisted as well as parts of the installation
-# directory due to eg. logs.
-VOLUME ["/var/atlassian/bamboo","/opt/atlassian/bamboo/logs"]
+# home directory needs to be persisted as well as parts of the installation directory due to eg. logs.
+VOLUME ["${BAMBOO_DATA_DIR}", "${BAMBOO_LOGS_DIR}"]
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
