@@ -32,10 +32,18 @@ docker-compose down
 docker swarm init
 ```
 
+#### Create secrets
+```
+echo "app_user" | docker secret create com.ragedunicorn.postgresql.app_user -
+echo "app_user_password" | docker secret create com.ragedunicorn.postgresql.app_user_password -
+```
+
 #### Deploy stack
 ```
 docker stack deploy --compose-file=docker-compose.stack.yml [stackname]
 ```
+
+For a production deployment a stack should be deployed. The secrets will then be taken into account and postgresql will be setup accordingly. The new app user will be configured for external access to the database.
 
 ## Dockery
 

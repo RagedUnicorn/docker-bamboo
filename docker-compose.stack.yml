@@ -15,6 +15,27 @@ services:
     labels:
       com.ragedunicorn.bamboo.environment: "prod"
       com.ragedunicorn.bamboo.description: "Bamboo container"
+  postgresql:
+    image: ragedunicorn/postgresql:1.0.5-stable
+    volumes:
+      - postgresql_data:/var/lib/postgresql
+    secrets:
+      - com.ragedunicorn.postgresql.app_user
+      - com.ragedunicorn.postgresql.app_user_password
+    healthcheck:
+      test: ["CMD", "/docker-healthcheck.sh"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+    labels:
+      com.ragedunicorn.postgresql.environment: "prod"
+      com.ragedunicorn.postgresql.description: "PostgreSQL"
 volumes:
   bamboo_data: {}
   bamboo_logs: {}
+  postgresql_data: {}
+secrets:
+  com.ragedunicorn.postgresql.app_user:
+    external: true
+  com.ragedunicorn.postgresql.app_user_password:
+    external: true

@@ -9,12 +9,27 @@ services:
     ports:
       - "8085:8085"
       - "54663:54663"
+    depends_on:
+      - postgresql
     stdin_open: true
     tty: true
     entrypoint: /bin/sh
     labels:
       com.ragedunicorn.bamboo.environment: "dev"
       com.ragedunicorn.bamboo.description: "Bamboo container"
+  postgresql:
+    image: ragedunicorn/postgresql:${POSTGRESQL_TAG_VERSION}-dev
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    stdin_open: true
+    tty: true
+    entrypoint: /bin/sh
+    labels:
+      com.ragedunicorn.postgresql.environment: "dev"
+      com.ragedunicorn.postgresql.description: "PostgreSQL"
 volumes:
   bamboo_data: {}
   bamboo_logs: {}
+  postgresql_data: {}
