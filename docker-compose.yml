@@ -2,7 +2,7 @@ version: '3.6'
 services:
   bamboo:
     build: .
-    image: ragedunicorn/bamboo:1.0.0-stable
+    image: ragedunicorn/bamboo:${BAMBOO_TAG_VERSION}-stable
     volumes:
       - bamboo_data:/var/atlassian/bamboo
       - bamboo_logs:/opt/atlassian/bamboo/logs
