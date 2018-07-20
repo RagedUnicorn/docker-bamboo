@@ -26,6 +26,17 @@ To stop all services from the docker-compose file
 docker-compose down
 ```
 
+#### Join a swarm
+
+```
+docker swarm init
+```
+
+#### Deploy stack
+```
+docker stack deploy --compose-file=docker-compose.stack.yml [stackname]
+```
+
 ## Dockery
 
 In the dockery folder are some scripts that help out avoiding retyping long docker commands but are mostly intended for playing around with the container. For production use docker-compose should be used.

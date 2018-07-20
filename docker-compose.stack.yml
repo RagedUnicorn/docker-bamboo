@@ -1,0 +1,20 @@
+version: '3.6'
+services:
+  bamboo:
+    image: ragedunicorn/bamboo:1.0.0-stable
+    volumes:
+      - bamboo_data:/var/atlassian/bamboo
+      - bamboo_logs:/opt/atlassian/bamboo/logs
+    ports:
+      - "8085:8085"
+    healthcheck:
+      test: ["CMD", "/docker-healthcheck.sh"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+    labels:
+      com.ragedunicorn.bamboo.environment: "prod"
+      com.ragedunicorn.bamboo.description: "Bamboo container"
+volumes:
+  bamboo_data: {}
+  bamboo_logs: {}
