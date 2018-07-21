@@ -28,7 +28,6 @@ ENV \
   BAMBOO_DATA_DIR=/var/atlassian/bamboo \
   BAMBOO_LOGS_DIR=/opt/atlassian/bamboo/logs
 
-
 # explicitly set user/group IDs
 RUN addgroup -S "${BAMBOO_GROUP}" -g 9999 && adduser -S -G "${BAMBOO_GROUP}" -u 9999 "${BAMBOO_USER}"
 
@@ -47,6 +46,8 @@ RUN \
   mkdir -p "${BAMBOO_INSTALL}"; \
   curl -Ls "https://www.atlassian.com/software/bamboo/downloads/binary/atlassian-bamboo-${BAMBOO_VERSION}.tar.gz" \
     | tar -zx --directory  "${BAMBOO_INSTALL}" --strip-components=1 --no-same-owner; \
+  curl --location "https://jdbc.postgresql.org/download/postgresql-9.4.1212.jar" \
+    -o "${BAMBOO_INSTALL}/lib/postgresql-9.4.1212.jar"; \
   chmod -R 700 "${BAMBOO_INSTALL}"; \
   chown -R "${BAMBOO_USER}":"${BAMBOO_GROUP}" "${BAMBOO_INSTALL}"; \
   sed --in-place 's/^# umask 0027$/umask 0027/g' "${BAMBOO_INSTALL}/bin/setenv.sh";
