@@ -31,11 +31,12 @@ ENV \
 # explicitly set user/group IDs
 RUN addgroup -S "${BAMBOO_GROUP}" -g 9999 && adduser -S -G "${BAMBOO_GROUP}" -u 9999 "${BAMBOO_USER}"
 
+WORKDIR /home
+
 RUN \
   set -ex; \
   apk add --no-cache \
     su-exec="${SU_EXEC_VERSION}" \
-    curl="${CURL_VERSION}" \
     git="${GIT_VERSION}" \
     openssh="${OPENSSH_VERSION}" \
     bash="${BASH_VERSION}"; \
@@ -44,10 +45,16 @@ RUN \
   chmod -R 700 "${BAMBOO_HOME}"; \
   chown -R "${BAMBOO_USER}":"${BAMBOO_GROUP}" "${BAMBOO_HOME}"; \
   mkdir -p "${BAMBOO_INSTALL}"; \
-  curl -Ls "https://www.atlassian.com/software/bamboo/downloads/binary/atlassian-bamboo-${BAMBOO_VERSION}.tar.gz" \
-    | tar -zx --directory  "${BAMBOO_INSTALL}" --strip-components=1 --no-same-owner; \
-  curl --location "https://jdbc.postgresql.org/download/postgresql-9.4.1212.jar" \
-    -o "${BAMBOO_INSTALL}/lib/postgresql-9.4.1212.jar"; \
+  if ! wget -q "https://www.atlassian.com/software/bamboo/downloads/binary/atlassian-bamboo-${BAMBOO_VERSION}.tar.gz"; then \
+    echo >&2 "Error: Failed to download Bamboo binary"; \
+    exit 1; \
+  fi && \
+  tar zxf atlassian-bamboo-"${BAMBOO_VERSION}".tar.gz --directory  "${BAMBOO_INSTALL}" --strip-components=1 --no-same-owner; \
+  rm atlassian-bamboo-"${BAMBOO_VERSION}".tar.gz; \
+  if ! wget -q "https://jdbc.postgresql.org/download/postgresql-9.4.1212.jar" -P "${BAMBOO_INSTALL}/lib/"; then \
+    echo >&2 "Error: Failed to download Postgresql driver"; \
+    exit 1; \
+  fi && \
   chmod -R 700 "${BAMBOO_INSTALL}"; \
   chown -R "${BAMBOO_USER}":"${BAMBOO_GROUP}" "${BAMBOO_INSTALL}"; \
   sed --in-place 's/^# umask 0027$/umask 0027/g' "${BAMBOO_INSTALL}/bin/setenv.sh";
