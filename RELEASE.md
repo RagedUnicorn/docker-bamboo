@@ -19,4 +19,5 @@
   * Tag and push stable version as latest version (default image for docker hub)
     * `docker tag ragedunicorn/bamboo:x.x.x-stable ragedunicorn/bamboo:latest`
     * `docker push ragedunicorn/bamboo:latest`
+  * Note: docker stack image is not pushed to docker hub currently
 * Update docker hub description links
