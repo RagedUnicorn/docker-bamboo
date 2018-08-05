@@ -17,7 +17,7 @@ services:
       com.ragedunicorn.bamboo.environment: "prod"
       com.ragedunicorn.bamboo.description: "Bamboo container"
   postgresql:
-    image: ragedunicorn/postgresql:1.0.5-stable
+    image: ragedunicorn/postgresql:1.1.0-stable
     volumes:
       - postgresql_data:/var/lib/postgresql
     secrets:
