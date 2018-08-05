@@ -17,6 +17,7 @@ services:
       interval: 1m
       timeout: 10s
       retries: 3
+      start_period: 1m
     labels:
       com.ragedunicorn.bamboo.environment: "prod"
       com.ragedunicorn.bamboo.description: "Bamboo container"
@@ -31,6 +32,7 @@ services:
       interval: 1m
       timeout: 10s
       retries: 3
+      start_period: 1m
     labels:
       com.ragedunicorn.postgresql.environment: "prod"
       com.ragedunicorn.postgresql.description: "PostgreSQL"
