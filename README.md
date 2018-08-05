@@ -81,9 +81,10 @@ Stopping the running container
 sh dockery/dstop.sh
 ```
 
+
 ## Persistence
 
-The container is storing data in multiple docker volumes `/var/atlassian/bamboo`, `/opt/atlassian/bamboo/logs`.
+The container is storing data in the docker volume configured by the environment variable `${BAMBOO_DATA_DIR}` and `${BAMBOO_LOGS_DIR}`.
 
 ## Healthcheck
 
