@@ -1,4 +1,4 @@
-FROM ragedunicorn/openjdk:1.1.0-jre-stable
+FROM ragedunicorn/openjdk:1.2.0-jre-stable
 
 LABEL com.ragedunicorn.maintainer="Michael Wiesendanger <michael.wiesendanger@gmail.com>"
 
@@ -15,8 +15,8 @@ ARG BAMBOO_GROUP=bamboo
 ENV \
   BAMBOO_VERSION=6.5.0 \
   SU_EXEC_VERSION=0.2-r0 \
-  GIT_VERSION=2.18.0-r0 \
-  OPENSSH_VERSION=7.7_p1-r2 \
+  GIT_VERSION=2.20.1-r0 \
+  OPENSSH_VERSION=7.9_p1-r4 \
   BASH_VERSION=4.4.19-r1
 
 ENV \
