@@ -6,6 +6,11 @@ services:
     volumes:
       - bamboo_data:/var/atlassian/bamboo
       - bamboo_logs:/opt/atlassian/bamboo/logs
+    environment:
+      POSTGRESQL_APP_USER: "app"
+      POSTGRESQL_APP_PASSWORD: "app"
+      POSTGRESQL_DATABASE_HOSTNAME: "postgresql"
+      BAMBOO_DATABASE_NAME: "bamboo"
     ports:
       - "8085:8085"
     expose:
@@ -25,6 +30,9 @@ services:
     image: ragedunicorn/postgresql:${POSTGRESQL_TAG_VERSION}-stable
     volumes:
       - postgresql_data:/var/lib/postgresql
+    environment:
+      POSTGRESQL_APP_USER: "app"
+      POSTGRESQL_APP_PASSWORD: "app"
     expose:
       - "5432"
     healthcheck:

@@ -5,6 +5,9 @@ services:
     volumes:
       - bamboo_data:/var/atlassian/bamboo
       - bamboo_logs:/opt/atlassian/bamboo/logs
+    environment:
+      POSTGRESQL_DATABASE_HOSTNAME: "postgresql"
+      BAMBOO_DATABASE_NAME: "bamboo"
     ports:
       - "8085:8085"
     healthcheck:

@@ -14,6 +14,7 @@ ARG BAMBOO_GROUP=bamboo
 
 ENV \
   BAMBOO_VERSION=6.8.1 \
+  POSTGRESQL_VERSION=11.2-r0 \
   SU_EXEC_VERSION=0.2-r0 \
   GIT_VERSION=2.20.1-r0 \
   NSS_VERSION=3.41-r0 \
@@ -39,6 +40,7 @@ RUN \
     su-exec="${SU_EXEC_VERSION}" \
     git="${GIT_VERSION}" \
     nss="${NSS_VERSION}" \
+    postgresql="${POSTGRESQL_VERSION}" \
     openssh="${OPENSSH_VERSION}" \
     bash="${BASH_VERSION}" && \
   mkdir -p "${BAMBOO_HOME}" && \
