@@ -2,9 +2,7 @@
 
 > A docker base image to build a container for Bamboo based on Alpine Linux
 
-## Version
-
-* Bamboo 6.5.0
+This container is intended to build a base for running Bamboo Software.
 
 ## Using the image
 
