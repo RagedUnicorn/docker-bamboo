@@ -13,9 +13,10 @@ ARG BAMBOO_USER=bamboo
 ARG BAMBOO_GROUP=bamboo
 
 ENV \
-  BAMBOO_VERSION=6.5.0 \
+  BAMBOO_VERSION=6.8.1 \
   SU_EXEC_VERSION=0.2-r0 \
   GIT_VERSION=2.20.1-r0 \
+  NSS_VERSION=3.41-r0 \
   OPENSSH_VERSION=7.9_p1-r4 \
   BASH_VERSION=4.4.19-r1
 
@@ -37,6 +38,7 @@ RUN \
   apk add --no-cache \
     su-exec="${SU_EXEC_VERSION}" \
     git="${GIT_VERSION}" \
+    nss="${NSS_VERSION}" \
     openssh="${OPENSSH_VERSION}" \
     bash="${BASH_VERSION}" && \
   mkdir -p "${BAMBOO_HOME}" && \
